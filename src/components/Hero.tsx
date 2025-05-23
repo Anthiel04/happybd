@@ -32,7 +32,9 @@ const Hero: React.FC = () => {
             </div>
           </div>
           <button className="hero-cta">
-            <a href="#cakesect">Celebrate Now!</a>
+            <a href="#cakesect" style={{ all: "unset" }}>
+              Celebrate Now!
+            </a>
           </button>
         </div>
       </div>
