@@ -1,0 +1,95 @@
+.candle {
+  position: relative;
+  width: 100px;
+  height: 200px;
+  background: #ff9224;
+  border-radius: 40% 40% 50% 50%;
+  margin: 0 auto;
+}
+
+.wick {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  width: 6px;
+  height: 50px;
+  background: #23161a;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px 2px rgba(255, 140, 0, 0.6);
+  animation: wickGlow 3s ease-in-out infinite;
+}
+
+.flame {
+  position: absolute;
+  bottom: 110px;
+  left: 50%;
+  width: 40px;
+  height: 80px;
+  transform: translateX(-50%);
+  animation: flickerMove 3s infinite ease-in-out;
+  filter: drop-shadow(0 0 6px #ff6a00);
+}
+
+.flame::before,
+.flame::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform-origin: center bottom;
+  opacity: 0.8;
+  filter: blur(4px);
+  animation: flickerPulse 2.5s infinite alternate;
+}
+
+.flame::before {
+  width: 40px;
+  height: 80px;
+  background: radial-gradient(ellipse at bottom, #ffdd1f 20%, transparent 80%);
+  transform: translateX(-50%) scale(1);
+  animation-delay: 0s;
+}
+
+.flame::after {
+  width: 30px;
+  height: 60px;
+  background: radial-gradient(ellipse at bottom, #ff6a00 30%, transparent 90%);
+  transform: translateX(-50%) scale(0.85);
+  animation-delay: 1.2s;
+}
+
+@keyframes flickerPulse {
+  0% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(calc(-50% + 2px)) scale(1.05);
+  }
+  100% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes flickerMove {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(calc(-50% + 3px)) translateY(-3px);
+  }
+}
+
+@keyframes wickGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 8px 2px rgba(255, 140, 0, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgba(255, 180, 0, 0.9);
+  }
+}
